@@ -21,6 +21,18 @@ npm start       # production
 
 Then run the web client (`npm run dev` in kckc101/nh). Its Vite dev server proxies to this server.
 
+## Deploy (Render)
+
+GitHub Pages can't run Node, so the server needs a Node host with WebSocket support. `render.yaml` sets this up on Render's free tier:
+
+1. On render.com, sign in with GitHub and allow access to `kckc101/hh`.
+2. Go to **New → Blueprint**, pick `kckc101/hh`, enter a `DJ_PASSWORD`, and click **Apply**.
+3. Copy the service URL (e.g. `https://e-rave-server.onrender.com`). Set it as the Actions variable `VITE_SERVER_URL` in `kckc101/nh`, then re-run its Pages workflow.
+
+Free-tier notes:
+- The service sleeps after about 15 minutes idle. The first visitor waits about a minute for it to wake; refresh if the page falls back to the offline demo.
+- Uploaded tracks are lost when it restarts.
+
 ## Configuration
 
 | Env var | Default | Purpose |

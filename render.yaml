@@ -1,0 +1,15 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick kckc101/hh.
+# Render asks for DJ_PASSWORD on creation (sync: false keeps it out of the repo).
+services:
+  - type: web
+    name: e-rave-server
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DJ_PASSWORD
+        sync: false
